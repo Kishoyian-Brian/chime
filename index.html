@@ -570,14 +570,17 @@
         const absAmount = Math.abs(amount);
         const dollars = Math.floor(absAmount);
         const cents = Math.round((absAmount - dollars) * 100);
-        return `<span class="dollar-sign">$</span><span class="main-amount">${dollars.toLocaleString()}</span><span class="cents">.${cents
+        return `<span class="dollar-sign">$</span><span class="main-amount">${dollars.toLocaleString()}</span><span class="cents"> ${cents
           .toString()
           .padStart(2, "0")}</span>`;
       }
 
       function formatTransactionAmount(amount, isNegative) {
         const sign = isNegative ? "-" : "+";
-        const formatted = formatCurrency(Math.abs(amount));
+        const absAmount = Math.abs(amount);
+        const dollars = Math.floor(absAmount);
+        const cents = Math.round((absAmount - dollars) * 100);
+        const formatted = `$${dollars.toLocaleString()}.${cents.toString().padStart(2, "0")}`;
         return `${sign}${formatted}`;
       }
 
